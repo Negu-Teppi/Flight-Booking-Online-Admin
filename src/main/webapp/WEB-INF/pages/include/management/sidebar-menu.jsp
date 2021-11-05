@@ -51,7 +51,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<c:url value="/WEB-INF/pages/manager/setup/aircraft/set-seat.jsp"/> " class="nav-link ">
+                            <a href="<c:url value="/manager/aircraft-seat/add"/> " class="nav-link ">
                                 <span class="title">Set Seat</span>
                             </a>
                         </li>

@@ -23,7 +23,7 @@ public class FlightEntity implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date arrival;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "aircraft_id")
     private AircraftEntity aircraft;
 

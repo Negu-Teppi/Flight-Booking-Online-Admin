@@ -51,7 +51,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<c:url value="/WEB-INF/pages/manager/setup/aircraft/set-seat.jsp"/> " class="nav-link ">
+                            <a href="<c:url value="/manager/aircraft-seat/add"/> " class="nav-link ">
                                 <span class="title">Set Seat</span>
                             </a>
                         </li>
@@ -93,6 +93,25 @@
                         <li class="nav-item">
                             <a href="<c:url value="/manager/flight-route/view"/> " class="nav-link ">
                                 <span class="title">View</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item start">
+                    <a href="#" class="nav-link nav-toggle">
+                        <i class="material-icons">vpn_key</i>
+                        <span class="title">Setup Flight</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item ">
+                            <a href="<c:url value="/manager/flight/add"/>" class="nav-link ">
+                                <span class="title">View</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<c:url value="/WEB-INF/pages/manager/setup/aircraft/set-seat.jsp"/> " class="nav-link ">
+                                <span class="title">Add</span>
                             </a>
                         </li>
                     </ul>

@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="mvc"%>
@@ -27,10 +26,10 @@
                     <div class="page-title-breadcrumb">
                         <div class=" pull-left">
                             <c:if test="${action == 'add'}">
-                                <div class="page-title">Add Aircraft Seat</div>
+                                <div class="page-title">Add Flight Route</div>
                             </c:if>
                             <c:if test="${action == 'update'}">
-                                <div class="page-title">Edit Aircraft Seat</div>
+                                <div class="page-title">Edit Flight Route</div>
                             </c:if>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -39,10 +38,10 @@
                             <li><a class="parent-item" href="">Staff</a>&nbsp;<i class="fa fa-angle-right"></i>
                             </li>
                             <c:if test="${action == 'add'}">
-                                <li class="active">Add Aircraft Seat</li>
+                                <li class="active">Add Flight Route</li>
                             </c:if>
                             <c:if test="${action == 'update'}">
-                                <li class="active">Edit Aircraft Seat</li>
+                                <li class="active">Edit Flight Route</li>
                             </c:if>
 
                         </ol>
@@ -53,10 +52,10 @@
                         <div class="card-box">
                             <div class="card-head">
                                 <c:if test="${action == 'add'}">
-                                    <header>Add Aircraft Seat</header>
+                                    <header>Add Flight Route</header>
                                 </c:if>
                                 <c:if test="${action == 'update'}">
-                                    <header>Edit Aircraft Seat</header>
+                                    <header>Edit Flight Route</header>
                                 </c:if>
                                 <button id="panel-button" class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton">
                                     <i class="material-icons">more_vert</i>
@@ -71,48 +70,58 @@
                                 </ul>
                             </div>
                             <mvc:form action="${pageContext.request.contextPath}/manager/flight-route/result"
-                                      modelAttribute="aircraftSeat" method="post" id="aircraf-seat">
+                                      modelAttribute="flightRoute" method="post" id="flight-route">
                                 <div class="card-body row">
                                     <input name="action" type="text" value="${action}" hidden/>
                                     <c:if test="${action == 'update'}">
-                                        <input class="mdl-textfield__input" type="text" value="${aircraftSeat.id}" name="id" hidden/>
+                                        <input class="mdl-textfield__input" type="text" value="${flightRoute.id}" name="id" hidden/>
                                     </c:if>
                                     <div class="col-lg-6 p-t-20">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class="mdl-textfield__input" type="text" value="${aircraftSeat.aircraft}" name="aircraft">
-                                            <label class="mdl-textfield__label">Aircraft</label>
+                                            <input class="mdl-textfield__input" type="text" value="${flightRoute.duration}" name="duration">
+                                            <label class="mdl-textfield__label">Duration</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 p-t-20">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class="mdl-textfield__input" type="number" value="${aircraftSeat.price}" name="price">
+                                            <input class="mdl-textfield__input" type="number" value="${flightRoute.price}" name="price">
                                             <label class="mdl-textfield__label">Price</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 p-t-20">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <select name="seatStatus" class="mdl-textfield__input">
-                                                <c:forEach items="${seatStatus}" var="sStatus">
-                                                    <option value="${sStatus}">${sStatus}</option>
-                                                </c:forEach>
-                                            </select>
-                                            <label class="mdl-textfield__label">Seat Stuts</label>
+                                            <input class="mdl-textfield__input" type="number" value="${flightRoute.distance}" name="distance">
+                                            <label class="mdl-textfield__label">Distance</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 p-t-20">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <select name="seatType" class="mdl-textfield__input">
-                                                <c:forEach items="${seatTypes}" var="sType">
-                                                    <option value="${sType}">${sType}</option>
+                                            <select name="departure.id" class="mdl-textfield__input">
+                                                <c:forEach items="${airports}" var="airport">
+                                                    <c:if test="${airport.airportName == flightRoute.departure.airportName}">
+                                                        <option value="${airport.id}" selected>${airport.airportName}</option>
+                                                    </c:if>
+                                                    <c:if test="${airport.airportName != flightRoute.departure.airportName}">
+                                                        <option value="${airport.id}">${airport.airportName}</option>
+                                                    </c:if>
                                                 </c:forEach>
                                             </select>
-                                            <label class="mdl-textfield__label">Seat Type</label>
+                                            <label class="mdl-textfield__label">Departure</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 p-t-20">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class="mdl-textfield__input" type="number" value="${aircraftSeat.seat}" name="seat">
-                                            <label class="mdl-textfield__label">Seat</label>
+                                            <select name="destination.id" class="mdl-textfield__input">
+                                                <c:forEach items="${airports}" var="airport">
+                                                    <c:if test="${airport.airportName == flightRoute.destination.airportName}">
+                                                        <option value="${airport.id}" selected>${airport.airportName}</option>
+                                                    </c:if>
+                                                    <c:if test="${airport.airportName != flightRoute.destination.airportName}">
+                                                        <option value="${airport.id}">${airport.airportName}</option>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </select>
+                                            <label class="mdl-textfield__label">Destination</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 p-t-20 text-center">

@@ -1,6 +1,8 @@
 package com.manhlee.flight_booking_online.controller;
 
 import com.manhlee.flight_booking_online.entities.*;
+import com.manhlee.flight_booking_online.enums.SeatStatus;
+import com.manhlee.flight_booking_online.enums.SeatType;
 import com.manhlee.flight_booking_online.service.AircraftService;
 import com.manhlee.flight_booking_online.service.AirportService;
 import com.manhlee.flight_booking_online.service.CityService;
@@ -239,15 +241,17 @@ public class ManagerController {
 
     @RequestMapping(value = "/aircraft-seat/add")
     public String addAircraftSeat(Model model){
-        model.addAttribute("aircraft-seat", new AircraftSeatEntity());
-        model.addAttribute("airports", airportService.getAirports());
+        model.addAttribute("aircraftSeat", new AircraftSeatEntity());
+        model.addAttribute("seatTypes", SeatType.values());
+        model.addAttribute("seatStatus", SeatStatus.values());
+        model.addAttribute("aircrafts", aircraftService.getAircrafts());
         model.addAttribute("action", "add");
-        return "manager/setup/flight-route/edit-flight-route";
+        return "manager/setup/aircraft/set-seat";
     }
 
     @RequestMapping(value = "/aircraft-seat/result", method = RequestMethod.POST)
     public String resultAircraftSeat(@ModelAttribute("aircraft-seat") AircraftSeatEntity aircraftSeatEntity){
-        
+
         return "redirect:/manager/flight-route/view";
     }
 

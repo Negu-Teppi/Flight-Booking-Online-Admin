@@ -13,23 +13,23 @@ public class AircraftSeatEntity implements Serializable {
 
     private double price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "seat_id")
     private SeatEntity seat;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "seat_type_id")
     private SeatTypeEntity seatType;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "aircraft_id")
     private AircraftEntity aircraft;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "seat_status_id")
     private SeatStatusEntity seatStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "flight_id")
     private FlightEntity flight;
 
